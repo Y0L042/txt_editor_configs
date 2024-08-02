@@ -120,10 +120,24 @@ nmap <F2> :update<CR>
 imap <F2> <ESC>:update<CR>
 
 " Save the current file and switch between header and source files in normal mode
-nmap <F4> :update<CR>:e %:p:s,.h$,.X123X,:s,\.\(c\)$,.h,:s,.X123X$,.c,<CR>
+"nmap <F4> :update<CR>:e %:p:s,.h$,.X123X,:s,\.\(c\)$,.h,:s,.X123X$,.c,<CR>
 
 " Save the current file and switch between header and source files in insert mode
-imap <F4> <Esc>:update<CR>:e %:p:s,.h$,.X123X,:s,\.\(c\)$,.h,:s,.X123X$,.c,<CR>
+"imap <F4> <Esc>:update<CR>:e %:p:s,.h$,.X123X,:s,\.\(c\)$,.h,:s,.X123X$,.c,<CR>
+
+
+
+" Switch between header/source with F4 (change between .c & .cpp)
+nnoremap <F4> :update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>
+inoremap <F4> <ESC>:update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>
+vnoremap <F4> <ESC>:update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>
+
+" Switch between header/source and search for selected text/text under cursor with Shift+F4
+nnoremap <S-F4> :let @/ = expand('<cword>')<CR>:update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>ggnzt
+inoremap <S-F4> <ESC>:let @/ = expand('<cword>')<CR>:update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>ggnzt
+vnoremap <S-F4> y:let @/ = @0<CR>:update<CR>:e %:p:s,.h$,.X123X,:s,\\.c$,\\.h,:s,.X123X$,.c,<CR>ggnzt
+
+
 
 
 " Function to check if the current buffer is netrw
